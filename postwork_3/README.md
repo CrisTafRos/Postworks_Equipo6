@@ -74,6 +74,7 @@ hist(LIGAESP$FTHG,freq = FALSE,breaks = (seq(0,8, 0.5)),
      xlab = "goles",
      ylab = "probabilidad")
 ```
+![alt text](https://github.com/CrisTafRos/Postworks_Equipo6/raw/main/postwork_3/prob_marg_home.jpeg)
 - Un gráfico de barras para las probabilidades marginales estimadas del número de goles que anota el equipo visitante.
 ```r
 hist(LIGAESP$FTAG,freq = FALSE,breaks = (seq(0,8, 0.5)),
@@ -81,6 +82,7 @@ hist(LIGAESP$FTAG,freq = FALSE,breaks = (seq(0,8, 0.5)),
      xlab = "goles",
      ylab = "probabilidades")
 ```
+![alt text](https://github.com/CrisTafRos/Postworks_Equipo6/raw/main/postwork_3/prob_marg_visita.jpeg)
 - Un heatmap para las probabilidades conjuntas estimadas de los números de goles que anotan el equipo de casa y el equipo visitante en un partido.
 ```r
 library(ggplot2)
@@ -130,3 +132,6 @@ ggplot(conjunta.m, aes(x = Var1, y = Var2, fill = value)) +
         ylab(label = "FTAG") +
         scale_fill_gradient(name = "Probabilidad Conjunta")
 ```
+![alt text](https://github.com/CrisTafRos/Postworks_Equipo6/raw/main/postwork_3/proba_conjunta.jpeg)
+
+[Postwork Anterior](https://github.com/CrisTafRos/Postworks_Equipo6/tree/main/postwork_2) | [Postwork Siguiente](https://github.com/CrisTafRos/Postworks_Equipo6/tree/main/postwork_4) 
