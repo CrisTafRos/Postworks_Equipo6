@@ -44,15 +44,19 @@ LIGAESP <- rbind(datos2017, datos2018, datos2019)
 #goles (x=0,1,... ,8), y el equipo visitante anote Y=y goles (y=0,1,... ,6), 
 #en un partido. Obt?n una tabla de cocientes al dividir estas probabilidades 
 #conjuntas por el producto de las probabilidades marginales correspondientes.
+
 casaanote<-table(LIGAESP$FTHG)
 x<-prop.table(casaanote)
 x
+
 visitaanote<-table(LIGAESP$FTAG)
 y<-prop.table(visitaanote)
 y
+
 conjunta<-table(LIGAESP$FTHG,LIGAESP$FTAG)
 xy<-prop.table(conjunta)
 xy
+
 k<-1
 co<-(x[1]*y[1])/xy[1,1]
 for(i in 1:9) {
@@ -61,6 +65,7 @@ for(i in 1:9) {
     k=k+1
   }
 }
+
 str(co)
 
 coci<-data.frame(co)
@@ -74,10 +79,13 @@ library(rsample)
 #install.packages("rsample")
 coci2<-bootstraps(coci, times = 63)
 coci2
+
 boostrap<-coci2$splits[[1]]
 boostrap
+
 cociboostrap<-as.data.frame(boostrap)
 str(cociboostrap)
+
 cociboostrap<-sort(cociboostrap$co)
 cociboostrap
 coci<-sort(coci$co)
