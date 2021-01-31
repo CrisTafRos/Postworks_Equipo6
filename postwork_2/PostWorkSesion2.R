@@ -55,6 +55,6 @@ datos2019 <- mutate(datos2019, Date = as.Date(Date, "%d/%m/%y"))
 str(datos2019)
 
 # Se agrupan los df en uno solo
-datos <- rbind(datos2017, datos2018, datos2019)
+LIGAESP <- rbind(datos2017, datos2018, datos2019)
 # Se ven los primeros y ?ltimos datos
-head(datos);tail(datos)
+head(LIGAESP);tail(LIGAESP)
