@@ -9,10 +9,10 @@ setwd(paste(getwd(), "/PostWork", sep = ""))
 
 # Descarga los datos de la temporada 2019/2020
 url1 <- "https://www.football-data.co.uk/mmz4281/1920/SP1.csv"
-download.file(url = url1, destfile = "Temporada2019-2020", mode = "wb")
+download.file(url = url1, destfile = "Temporada2019-2020.csv", mode = "wb")
 
 # Guardarlos en la variable datos
-datos <- read.csv("Temporada2019-2020")
+datos <- read.csv("Temporada2019-2020.csv")
 
 #Revisar la estructura general
 head(datos); tail(datos); str(datos)
@@ -25,8 +25,18 @@ datos <- select(datos, FTHG, FTAG)
 frecuenciaLocal <- table(datos$FTHG)
 frecuenciaVisitante <- table(datos$FTAG)
 
-# Se obtiene las probabilidades conjuntas
+#Hacemos una prvisualización
+head(frecuenciaLocal)
+head(frecuenciaVisitante)
+
+# Consultar cómo funciona la función table en R al ejecutar en la consola:
+?table
+
+# Se obtiene las probabilidades marginales
+# La probabilidad (marginal) de que el equipo que juega en casa anote x goles
 frecuencia.Local <- round(prop.table(frecuenciaLocal, margin = NULL), digits = 3)
+
+# La probabilidad (marginal) de que el equipo que juega como visitante anote y goles
 frecuencia.Visitante <- round(prop.table(frecuenciaVisitante, margin = NULL), digits = 3)
 
 # Se calcula probabilidad conjunta
