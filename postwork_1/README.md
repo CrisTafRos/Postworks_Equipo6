@@ -130,4 +130,4 @@ FTHG           0           1           2           3           4           5
    6 0.002631579 0.000000000 0.000000000 0.000000000 0.000000000 0.000000000
 ```
 
-[Descripción de preworks](https://github.com/CrisTafRos/Postworks_Equipo6) | [Postwork Siguiente](#) 
+[Descripción de preworks](https://github.com/CrisTafRos/Postworks_Equipo6) | [Postwork Siguiente](https://github.com/CrisTafRos/Postworks_Equipo6/tree/main/postwork_2) 
