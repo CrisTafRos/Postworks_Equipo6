@@ -25,7 +25,7 @@ datos <- select(datos, FTHG, FTAG)
 frecuenciaLocal <- table(datos$FTHG)
 frecuenciaVisitante <- table(datos$FTAG)
 
-#Hacemos una prvisualización
+#Hacemos una previsualización
 head(frecuenciaLocal)
 head(frecuenciaVisitante)
 
@@ -34,18 +34,17 @@ head(frecuenciaVisitante)
 
 # Se obtiene las probabilidades marginales
 # La probabilidad (marginal) de que el equipo que juega en casa anote x goles
-frecuencia.Local <- round(prop.table(frecuenciaLocal, margin = NULL), digits = 3)
+probabilidad.Local <- round(prop.table(frecuenciaLocal, margin = NULL), digits = 3)
+probabilidad.Local
 
 # La probabilidad (marginal) de que el equipo que juega como visitante anote y goles
-frecuencia.Visitante <- round(prop.table(frecuenciaVisitante, margin = NULL), digits = 3)
+probabilidad.Visitante <- round(prop.table(frecuenciaVisitante, margin = NULL), digits = 3)
+probabilidad.Visitante
 
 # Se calcula probabilidad conjunta
 prob.Conjunta <-datos %>%
   select(FTHG, FTAG) %>%
   table() %>%
   prop.table()
-
-# Mostramos los resultados
-frecuencia.Local
-frecuencia.Visitante
 prob.Conjunta
+
