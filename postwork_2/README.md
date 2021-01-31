@@ -74,9 +74,7 @@ View(datos2018)
 View(datos2019)
 ```
 Para obtener algo parecido a esto, obviamente más extenso y por cada dataframe:
-```r
- # Agregar aquí la imagen D:
-```
+![alt text](https://github.com/CrisTafRos/Postworks_Equipo6/raw/main/postwork_2/view(datos2017).JPG)
 - Con summary()
 ```r
 summary(datos2017)
