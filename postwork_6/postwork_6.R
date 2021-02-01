@@ -33,6 +33,7 @@ str(match.data)
 prom.match <- aggregate(sumagoles ~ month+year, match.data, mean)
 prom.match[1:96, ]
 
+# Tomando año y mes de inicio
 yr <- prom.match$year[1]
 mo <- prom.match$month[1]
 
@@ -40,6 +41,7 @@ mo <- prom.match$month[1]
 timeserie <- ts(prom.match$sumagoles, start = c(yr,mo), freq = 12)
 class(timeserie)
 
+# Grafica la serie de tiempo
 plot(timeserie, type = "o", ylab = "Goles", xlab = "Tiempo", main = "Promedio de goles desde 2010")
 
 # Crea la serie de tiempo del promedio por mes de la suma de goles hasta diciembre de 2019.

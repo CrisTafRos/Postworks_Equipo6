@@ -45,7 +45,7 @@ datos2018 <- select(datos2018, Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR)
 str(datos2018)
 datos2018 <- mutate(datos2018, Date = as.Date(Date, "%d/%m/%y"))
 str(datos2018)
-
+ 
 datos2019 <- select(datos2019, Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR)
 str(datos2019)
 datos2019 <- mutate(datos2019, Date = as.Date(Date, "%d/%m/%y"))
@@ -54,7 +54,7 @@ str(datos2019)
 # Se agrupan los df en uno solo
 SmallData <- rbind(datos2017, datos2018, datos2019)
 # Se ven los primeros y últimos datos
-head(datos);tail(datos)
+head(SmallData);tail(SmallData)
 
 # Renombrar las columnas
 SmallData <- SmallData %>%
