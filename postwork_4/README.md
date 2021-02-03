@@ -65,15 +65,27 @@ str(co)
 coci<-data.frame(co)
 coci
 ```
-
-Mediante un procedimiento de boostrap, obt?n m?s cocientes similares a los 
-#obtenidos en la tabla del punto anterior. Esto para tener una idea de las distribuciones
-#de la cual vienen los cocientes en la tabla anterior. Menciona en cu?les casos le parece
-#razonable suponer que los cocientes de la tabla en el punto 1, son iguales a 1 (en tal caso tendr?amos independencia de las variables aleatorias X y Y).
+Y obteniendo este resultado:
+```r
+> str(co)
+ Named num [1:63] 1.047 0.98 1.082 0.686 1.279 ...
+ - attr(*, "names")= chr [1:63] "0" "" "" "" ...
+ 
+ > coci
+          co
+1  1.0473586
+2  0.9803585
+3  1.0818151
+4  0.6862991
+5  1.2785088
+...
+```
+Mediante un procedimiento de boostrap, obtenemos más cocientes similares a los obtenidos previamiente. Esto nos dará una idea de las distribuciones de la cual vienen los cocientes en la tabla anterior. 
 
 ```r
 library(rsample)
-#install.packages("rsample")
+
+install.packages("rsample")
 coci2<-bootstraps(coci, times = 63)
 coci2
 ```
@@ -96,6 +108,8 @@ Obteniendo la siguiente salida:
 10 <split [1/0]> Bootstrap10
 # ... with 53 more rows
 ```
+Continuando con las siguientes sentencias:
+```r
 boostrap<-coci2$splits[[1]]
 boostrap
 ```
@@ -105,6 +119,71 @@ Obteniendo la siguiente salida:
 <Analysis/Assess/Total>
 <1/0/1>
 ```
+Lo convertimos en un dataframe:
+```r
+cociboostrap<-as.data.frame(boostrap)
+str(cociboostrap)
+```
+Y comprobamos:
+```r
+> str(cociboostrap)
+'data.frame':	63 obs. of  1 variable:
+ $ co: num  1.279 0.289 Inf Inf Inf ...
+```
+Ordenamos:
+```r
+cociboostrap<-sort(cociboostrap$co)
+cociboostrap
+```
+Y comprobamos:
+```r
+> cociboostrap
+ [1] 0.2122807 0.2122807 0.2894737 0.2894737 0.3403509 0.4000000 0.4000000
+ [8] 0.5114035 0.5114035 0.6368421 0.7035088 0.7035088 0.7738596 0.8793860
+[15] 0.8800000 0.8828345 0.9219048 0.9669782 0.9690907 0.9690907 0.9704261
+[22] 0.9939726 0.9939726 1.0142982 1.0151372 1.0614035 1.0614035 1.0614035
+[29] 1.0693333 1.0797368 1.0818151 1.1774301 1.1774301 1.2717949 1.2717949
+[36] 1.2785088 1.2785088 1.2785088 1.4666667 1.8526316       Inf       Inf
+[43]       Inf       Inf       Inf       Inf       Inf       Inf       Inf
+[50]       Inf       Inf       Inf       Inf       Inf       Inf       Inf
+[57]       Inf       Inf       Inf       Inf       Inf       Inf       Inf
+```
+Ordenamos por co, unimos ambos dataframes, cambiamos los nombres:
+```r
+coci<-sort(coci$co)
+(df2 <- cbind(coci,cociboostrap))
+(names(df2) <- c("valores", "cocientes", "bootstraps"))
+```
+Damos formato a nuestro dataframe y lo visualizamos:
+```r
+suppressMessages(suppressWarnings(library(reshape2)))
+(df2 <- melt(df2)) # funci?n del paquete reshape2
+df2
+```
+Así:
+```r
+> (df2 <- melt(df2)) # funci?n del paquete reshape2
+    Var1         Var2     value
+1      1         coci 0.2122807
+2      2         coci 0.2894737
+3      3         coci 0.3263158
+4      4         coci 0.3368421
+...
+64     1 cociboostrap 0.2122807
+65     2 cociboostrap 0.2122807
+66     3 cociboostrap 0.2894737
+67     4 cociboostrap 0.2894737
+...
+```
+Percibimos que las frecuencias relativas son parecidas a las probabilidades
+```r
+library(ggplot2)
+ggplot(df2, aes(x = Var1 , y = value, fill = Var2)) + 
+  geom_bar (stat="identity", position = "dodge") # Funciones del paquete ggplot2
+```
+Y la gráfica generada es la siguiente:
+
+![alt text](https://github.com/CrisTafRos/Postworks_Equipo6/raw/main/postwork_4/cociVScocibootstrap.jpeg)
 
 [Postwork Anterior](https://github.com/CrisTafRos/Postworks_Equipo6/tree/main/postwork_3) | [Postwork Siguiente](https://github.com/CrisTafRos/Postworks_Equipo6/tree/main/postwork_5) 
 

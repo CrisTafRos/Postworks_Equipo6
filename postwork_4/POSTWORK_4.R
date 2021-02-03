@@ -88,10 +88,12 @@ str(cociboostrap)
 
 cociboostrap<-sort(cociboostrap$co)
 cociboostrap
+
 coci<-sort(coci$co)
 (df2 <- cbind(coci,cociboostrap))
 (names(df2) <- c("valores", "cocientes", "bootstraps"))
 
+suppressMessages(suppressWarnings(library(reshape2)))
 (df2 <- melt(df2)) # funci?n del paquete reshape2
 df2
 
